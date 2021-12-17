@@ -19,14 +19,16 @@ namespace Hitomezashi_Generator
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+            
             var rand = new Random();
-
+            double on_Prob = Convert.ToDouble(textBox3.Text);
+            double off_Prob = Convert.ToDouble(textBox4.Text);
             Graphics g = e.Graphics;
 
             for (int j = 0; j < 500; j = j + 10)
             {
-                int x = rand.Next(100);
-                if (x < 50)
+                double x = rand.Next(100);
+                if (x < on_Prob*100)
                 {
                     for (int i = 0; i < 500; i = i + 20)
                     {
@@ -44,7 +46,7 @@ namespace Hitomezashi_Generator
             for (int i = 0; i < 500; i = i + 10)
             {
                 int x = rand.Next(100);
-                if (x < 50)
+                if (x < on_Prob*100)
                 {
                     for (int j = 0; j < 500; j = j + 20)
                     {
@@ -59,6 +61,17 @@ namespace Hitomezashi_Generator
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Refresh();
+        }
+
+        private void textBox3_Leave(object sender, EventArgs e)
+        {
+            double y = 1 - Convert.ToDouble(textBox3.Text);
+            textBox4.Text = Convert.ToString(y);
         }
     }
 }
